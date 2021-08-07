@@ -12,8 +12,6 @@ import {
 import {IWorkersCard} from "./interface";
 
 const WorkersCard = (props: IWorkersCard) => {
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-    if (props?.onPressButton) props.onPressButton(isModalOpen)
 
     return(
         <Paper variant="elevation" elevation={1} style={{ marginTop: '15px' }}>
@@ -38,7 +36,7 @@ const WorkersCard = (props: IWorkersCard) => {
                     <Button
                         variant="contained"
                         style={{ backgroundColor: "#3f51b5", color: "#fff" }}
-                        onClick={() => setIsModalOpen(true)}
+                        onClick={props.onPressButton}
                     >
                         Add
                     </Button>
