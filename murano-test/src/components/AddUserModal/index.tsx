@@ -17,7 +17,8 @@ import {
     DialogTitle,
     DialogActions, FormGroup,
 } from "@material-ui/core";
-import {IAddUserModal, IUser} from "./interface";
+import {IAddUserModal} from "./interface";
+import {IUser} from "../../utils/types";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import {useHandler} from "use-handler";
@@ -26,10 +27,10 @@ import moment from "moment";
 const AddUserModal = (props: IAddUserModal) => {
     const [firstName, setFirstName] = useState<string>("")
     const [secondName, setSecondName] = useState<string>("")
-    const [selectedDate, setSelectedDate] = useState<string | null>();
+    const [selectedDate, setSelectedDate] = useState<string | null>(null);
     const [position, setPosition] = useState<string>("");
     const [gender, setGender] = useState<string>("");
-    const [experience, setExperience] = useState<string>()
+    const [experience, setExperience] = useState<string>("")
 
     const user: IUser = {
         fullName: firstName + ' ' + secondName,
@@ -87,7 +88,7 @@ const AddUserModal = (props: IAddUserModal) => {
             }}
         >
             <DialogTitle>Add User</DialogTitle>
-            <Typography variant="h6" style={{ color: "#757575" }}>
+            <Typography variant="h6" style={{ marginLeft: "24px", color: "#757575" }}>
                 Check all fields before click on Save button
             </Typography>
             <FormGroup>
@@ -130,7 +131,6 @@ const AddUserModal = (props: IAddUserModal) => {
                         margin="normal"
                         id="date-picker-inline"
                         label="Birthday"
-                        defaultValue=''
                         value={selectedDate}
                         onChange={handleDateChange}
                         KeyboardButtonProps={{

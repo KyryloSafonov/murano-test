@@ -5,7 +5,7 @@ import WorkersCard from "./components/WorkersCard";
 import {useHandler} from "use-handler";
 import AddUserModal from "./components/AddUserModal";
 import Loader from "./components/Loader";
-import {IUser} from "./components/AddUserModal/interface";
+import {IUser} from "./utils/types";
 
 const App = () => {
     const [users, setUsers] = useState<IUser[]>([])
@@ -40,19 +40,6 @@ const App = () => {
 
   return (
       <Container maxWidth="md" style={{ marginTop: '8px' }}>
-          <Button variant="contained" style={{
-              width: "56px",
-              height: "56px",
-              zIndex: 1400,
-              borderRadius: "50%",
-              backgroundColor: "#f44336",
-              color: "#fff",
-              position: "absolute",
-              top: "16px",
-              right: "16px",
-          }}>
-              Fill
-          </Button>
           <GeneralInfoCard />
           <WorkersCard onPressButton={openModalHandler} users={users} />
           {loader ?

@@ -14,9 +14,12 @@ import {
 } from "@material-ui/core";
 import DeleteIcon from '@material-ui/icons/Delete';
 import {IWorkersCard} from "./interface";
+import {useHandler} from "use-handler";
 
 const WorkersCard = (props: IWorkersCard) => {
-    console.log(props.users)
+    const deleteUser = useHandler((index: number) => {
+        props.users.splice(index, 1)
+    })
 
     return(
         <Paper variant="elevation" elevation={1} style={{ marginTop: '15px' }}>
@@ -37,7 +40,7 @@ const WorkersCard = (props: IWorkersCard) => {
                             </TableRow>
                         </TableHead>
                         <TableBody style={{ backgroundColor: "pink" }}>
-                            {props.users.map((user) => (
+                            {props.users.map((user, index) => (
                                 <TableRow key={user.fullName}>
                                     <TableCell component="th" scope="row">
                                         {user.fullName}

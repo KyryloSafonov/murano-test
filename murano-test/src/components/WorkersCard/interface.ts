@@ -1,4 +1,4 @@
-import {IUser} from "../AddUserModal/interface";
+import {IUser} from "../../utils/types";
 
 export interface IWorkersCard {
     onPressButton?: () => void
