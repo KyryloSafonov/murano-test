@@ -1,14 +1,18 @@
-import React, {useState} from "react";
+import React from "react";
 import {
-    Box, Button,
+    Box,
+    Button,
+    IconButton,
     Paper,
-    Table, TableBody,
+    Table,
+    TableBody,
     TableCell,
     TableContainer,
     TableHead,
     TableRow,
     Typography
 } from "@material-ui/core";
+import DeleteIcon from '@material-ui/icons/Delete';
 import {IWorkersCard} from "./interface";
 
 const WorkersCard = (props: IWorkersCard) => {
@@ -29,18 +33,24 @@ const WorkersCard = (props: IWorkersCard) => {
                                 <TableCell>Profession</TableCell>
                                 <TableCell>Experience</TableCell>
                                 <TableCell>Gender</TableCell>
+                                <TableCell></TableCell>
                             </TableRow>
                         </TableHead>
-                        <TableBody>
+                        <TableBody style={{ backgroundColor: "pink" }}>
                             {props.users.map((user) => (
                                 <TableRow key={user.fullName}>
                                     <TableCell component="th" scope="row">
                                         {user.fullName}
                                     </TableCell>
-                                    <TableCell align="right">{user.date}</TableCell>
-                                    <TableCell align="right">{user.profession}</TableCell>
-                                    <TableCell align="right">{user.experience}</TableCell>
-                                    <TableCell align="right">{user.gender}</TableCell>
+                                    <TableCell align="left">{user.date}</TableCell>
+                                    <TableCell align="left">{user.profession}</TableCell>
+                                    <TableCell align="left">{user.experience}</TableCell>
+                                    <TableCell align="left">{user.gender}</TableCell>
+                                    <TableCell align="right">
+                                        <IconButton aria-label="delete">
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

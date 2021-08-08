@@ -21,12 +21,12 @@ import {IAddUserModal, IUser} from "./interface";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import {useHandler} from "use-handler";
+import moment from "moment";
 
 const AddUserModal = (props: IAddUserModal) => {
     const [firstName, setFirstName] = useState<string>("")
     const [secondName, setSecondName] = useState<string>("")
-    const [selectedDate, setSelectedDate] = useState<Date | null>();
-    const [formatDate, setFormatDate] = useState()
+    const [selectedDate, setSelectedDate] = useState<string | null>();
     const [position, setPosition] = useState<string>("");
     const [gender, setGender] = useState<string>("");
     const [experience, setExperience] = useState<string>()
@@ -65,8 +65,9 @@ const AddUserModal = (props: IAddUserModal) => {
     });
 
     const handleDateChange = useHandler((date: Date | null) => {
-        setSelectedDate(date);
-        console.log(date, 'date');
+        const formatDate = moment(date).calendar()
+        setSelectedDate(formatDate);
+        console.log(date?.toDateString(), 'date');
     });
 
     const handleOnAdd = () => {
@@ -115,9 +116,9 @@ const AddUserModal = (props: IAddUserModal) => {
                         value={position}
                         onChange={handleChangePosition}
                     >
-                        <MenuItem value={10}>Director</MenuItem>
-                        <MenuItem value={20}>Accountant</MenuItem>
-                        <MenuItem value={30}>Engineer</MenuItem>
+                        <MenuItem value="Director">Director</MenuItem>
+                        <MenuItem value="Accountant">Accountant</MenuItem>
+                        <MenuItem value="Engineer">Engineer</MenuItem>
                     </Select>
                 </FormControl>
                 <FormControl  fullWidth>

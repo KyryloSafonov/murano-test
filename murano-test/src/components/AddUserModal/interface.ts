@@ -7,7 +7,7 @@ export interface IAddUserModal {
 
 export interface IUser {
     fullName: string,
-    date: Date | null | undefined,
+    date: string | null | undefined,
     profession: string,
     experience: string | undefined,
     gender: string,
