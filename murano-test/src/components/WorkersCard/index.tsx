@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {
     Box, Button,
     Paper,
-    Table,
+    Table, TableBody,
     TableCell,
     TableContainer,
     TableHead,
@@ -12,6 +12,7 @@ import {
 import {IWorkersCard} from "./interface";
 
 const WorkersCard = (props: IWorkersCard) => {
+    console.log(props.users)
 
     return(
         <Paper variant="elevation" elevation={1} style={{ marginTop: '15px' }}>
@@ -30,6 +31,19 @@ const WorkersCard = (props: IWorkersCard) => {
                                 <TableCell>Gender</TableCell>
                             </TableRow>
                         </TableHead>
+                        <TableBody>
+                            {props.users.map((user) => (
+                                <TableRow key={user.fullName}>
+                                    <TableCell component="th" scope="row">
+                                        {user.fullName}
+                                    </TableCell>
+                                    <TableCell align="right">{user.date}</TableCell>
+                                    <TableCell align="right">{user.profession}</TableCell>
+                                    <TableCell align="right">{user.experience}</TableCell>
+                                    <TableCell align="right">{user.gender}</TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
                     </Table>
                 </TableContainer>
                 <Box style={{ marginTop: "16px", display: "flex", justifyContent: "flex-end" }}>
