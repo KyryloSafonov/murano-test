@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
     Box,
     Button,
@@ -17,9 +17,7 @@ import {IWorkersCard} from "./interface";
 import {useHandler} from "use-handler";
 
 const WorkersCard = (props: IWorkersCard) => {
-    const deleteUser = useHandler((index: number) => {
-        props.users.splice(index, 1)
-    })
+    const { users, setUsers } = props
 
     return(
         <Paper variant="elevation" elevation={1} style={{ marginTop: '15px' }}>
@@ -40,7 +38,7 @@ const WorkersCard = (props: IWorkersCard) => {
                             </TableRow>
                         </TableHead>
                         <TableBody style={{ backgroundColor: "pink" }}>
-                            {props.users.map((user, index) => (
+                            {users.map((user, index) => (
                                 <TableRow key={user.fullName}>
                                     <TableCell component="th" scope="row">
                                         {user.fullName}
@@ -50,7 +48,11 @@ const WorkersCard = (props: IWorkersCard) => {
                                     <TableCell align="left">{user.experience}</TableCell>
                                     <TableCell align="left">{user.gender}</TableCell>
                                     <TableCell align="right">
-                                        <IconButton aria-label="delete">
+                                        <IconButton
+                                            onClick={
+                                                () => setUsers(users.filter((user, id) => id !== index))}
+                                            aria-label="delete"
+                                        >
                                             <DeleteIcon />
                                         </IconButton>
                                     </TableCell>

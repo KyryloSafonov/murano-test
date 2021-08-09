@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Box, Button, CircularProgress, Container} from "@material-ui/core";
+import {Box, Button, Container} from "@material-ui/core";
 import GeneralInfoCard from "./components/GeneralInfoCard";
 import WorkersCard from "./components/WorkersCard";
 import {useHandler} from "use-handler";
@@ -41,7 +41,7 @@ const App = () => {
   return (
       <Container maxWidth="md" style={{ marginTop: '8px' }}>
           <GeneralInfoCard />
-          <WorkersCard onPressButton={openModalHandler} users={users} />
+          <WorkersCard onPressButton={openModalHandler} users={users} setUsers={setUsers} />
           {loader ?
              <Loader isOpen={loader} />
               :

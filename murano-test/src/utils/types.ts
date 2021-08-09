@@ -11,5 +11,5 @@ export interface IUserInfo {
     email: string
     primaryPhone: string
     secondaryPhone: string
-    businessDescription: string
+    businessDescription?: string
 }

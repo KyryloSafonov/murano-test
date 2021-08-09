@@ -31,6 +31,7 @@ const AddUserModal = (props: IAddUserModal) => {
     const [position, setPosition] = useState<string>("");
     const [gender, setGender] = useState<string>("");
     const [experience, setExperience] = useState<string>("")
+    const [error, setError] = useState<boolean>(false)
 
     const user: IUser = {
         fullName: firstName + ' ' + secondName,
@@ -72,7 +73,6 @@ const AddUserModal = (props: IAddUserModal) => {
     });
 
     const handleOnAdd = () => {
-        console.log(user)
         if (props?.onAdd) props.onAdd(user)
     }
 
@@ -93,7 +93,7 @@ const AddUserModal = (props: IAddUserModal) => {
             </Typography>
             <FormGroup>
             <DialogContent style={{ padding: "24px" }}>
-                <FormControl fullWidth style={{ marginTop: "5px", marginBottom: '5px' }}>
+                <FormControl required fullWidth style={{ marginTop: "5px", marginBottom: '5px' }}>
                     <InputLabel htmlFor="input-first-name">First Name</InputLabel>
                     <Input
                         name="input-first-name"
@@ -101,7 +101,7 @@ const AddUserModal = (props: IAddUserModal) => {
                         onChange={handleFirstName}
                     />
                 </FormControl>
-                <FormControl fullWidth style={{ marginTop: "5px", marginBottom: '5px' }}>
+                <FormControl required fullWidth style={{ marginTop: "5px", marginBottom: '5px' }}>
                     <InputLabel htmlFor="input-last-name">Last Name</InputLabel>
                     <Input
                         name="input-last-name"
@@ -109,7 +109,7 @@ const AddUserModal = (props: IAddUserModal) => {
                         onChange={handleSecondName}
                     />
                 </FormControl>
-                <FormControl fullWidth style={{ marginTop: "5px", marginBottom: '5px' }}>
+                <FormControl required fullWidth style={{ marginTop: "5px", marginBottom: '5px' }}>
                     <InputLabel htmlFor="input-job">Job position</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
@@ -122,7 +122,7 @@ const AddUserModal = (props: IAddUserModal) => {
                         <MenuItem value="Engineer">Engineer</MenuItem>
                     </Select>
                 </FormControl>
-                <FormControl  fullWidth>
+                <FormControl required  fullWidth>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
                         disableToolbar
@@ -139,7 +139,7 @@ const AddUserModal = (props: IAddUserModal) => {
                     />
                     </MuiPickersUtilsProvider>
                 </FormControl>
-                <FormControl fullWidth style={{ marginTop: "5px", marginBottom: '15px' }}>
+                <FormControl required fullWidth style={{ marginTop: "5px", marginBottom: '15px' }}>
                     <TextField
                         id="work-exp"
                         label="Work Experience (years)"
@@ -148,7 +148,7 @@ const AddUserModal = (props: IAddUserModal) => {
                         onChange={handleChangeExperience}
                     />
                 </FormControl>
-                <FormControl fullWidth component="fieldset">
+                <FormControl required fullWidth component="fieldset">
                     <FormLabel component="legend">Gender</FormLabel>
                     <RadioGroup
                         aria-label="gender"
